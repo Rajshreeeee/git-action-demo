@@ -1,0 +1,26 @@
+name: Run Python Script
+
+# When the action should run
+on:
+  push:                     # Trigger workflow on every push
+    branches: [ main ]      # Only for the main branch
+
+# Define what the job will do
+jobs:
+  build:
+    runs-on: ubuntu-latest  # GitHub provides a virtual machine with Ubuntu
+
+    steps:
+      # Step 1: Checkout your code from GitHub repo
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      # Step 3: Run your Python script
+      - name: Run the script
+        run: python app.py
